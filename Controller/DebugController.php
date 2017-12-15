@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaFigaro\GoogleAnalyticsApi\Controller;
+namespace Dmo\GoogleAnalyticsApi\Controller;
 
 use Google_Service_AnalyticsReporting_DateRange;
 use Google_Service_AnalyticsReporting_GetReportsRequest;
@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Class DebugController
- * @package MediaFigaro\GoogleAnalyticsApi\Controller
+ * @package Dmo\GoogleAnalyticsApi\Controller
  */
 class DebugController extends Controller
 {

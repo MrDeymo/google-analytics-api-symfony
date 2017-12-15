@@ -1,13 +1,13 @@
 {
-  "name": "mediafigaro/google-analytics-api-symfony",
+  "name": "dmo/ganalytics-api",
   "type": "symfony-bundle",
-  "description": "Google Analytics API v4 Symfony",
+  "description": "GAnalytics API v4 SF2/3 Bundle",
   "keywords": ["symfony","google","analytics","api","v4"],
-  "homepage": "https://github.com/mediafigaro/google-analytics-api-symfony",
+  "homepage": "https://github.com/MrDeymo/google-analytics-api-symfony",
   "license": "MIT",
   "authors": [
     {
-      "name": "Kendrick"
+      "name": "MrDeymo"
     }
   ],
   "require": {
@@ -21,7 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "MediaFigaro\\GoogleAnalyticsApi\\": "."
+      "Dmo\\GoogleAnalyticsApi\\": "."
     }
   }
 }
