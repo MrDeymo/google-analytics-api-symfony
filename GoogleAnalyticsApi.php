@@ -1,6 +1,6 @@
 <?php
 
-namespace Rocket\GoogleAnalyticsApi;
+namespace RocketServices\GoogleAnalyticsApi;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
