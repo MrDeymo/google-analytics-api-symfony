@@ -1,5 +1,5 @@
 {
-  "name": "dmo/ganalytics-api",
+  "name": "rocket/ganalytics-api",
   "type": "symfony-bundle",
   "description": "GAnalytics API v4 SF2/3 Bundle",
   "keywords": ["symfony","google","analytics","api","v4"],
@@ -21,7 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Dmo\\GoogleAnalyticsApi\\": "."
+      "Rocket\\GoogleAnalyticsApi\\": "."
     }
   }
 }

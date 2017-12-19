@@ -1,6 +1,6 @@
 <?php
 
-namespace Dmo\GoogleAnalyticsApi\Service;
+namespace Rocket\GoogleAnalyticsApi\Service;
 
 use Google_Client;
 use Google_Service_AnalyticsReporting;
@@ -13,7 +13,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  * Class GoogleAnalyticsService
- * @package Dmo\GoogleAnalyticsApi\Service
+ * @package Rocket\GoogleAnalyticsApi\Service
  */
 class GoogleAnalyticsService {
 
@@ -240,6 +240,17 @@ class GoogleAnalyticsService {
      * @param $viewId
      * @param $dateStart
      * @param $dateEnd
+     * @param $metric
+     * @return mixed
+     */
+    public function getMetricByDimensionDateRange($viewId,$dateStart,$dateEnd,$metric,$dimension) {
+        return $this->getDataDateRange($viewId,$dateStart,$dateEnd,$metric,['date',$dimension]);
+    }
+
+    /**
+     * @param $viewId
+     * @param $dateStart
+     * @param $dateEnd
      * @return mixed
      */
     public function getSessionsDateRange($viewId,$dateStart,$dateEnd) {
@@ -316,4 +327,23 @@ class GoogleAnalyticsService {
         return $this->getDataDateRange($viewId,$dateStart,$dateEnd,'avgPageLoadTime','date');
     }
 
+    /**
+     * @param $viewId
+     * @param $dateStart
+     * @param $dateEnd
+     * @return mixed
+     */
+    public function getAvgOrderValueDateRange($viewId,$dateStart,$dateEnd) {
+        return $this->getDataDateRange($viewId,$dateStart,$dateEnd,'revenuePerTransaction','date');
+    }
+
+    /**
+     * @param $viewId
+     * @param $dateStart
+     * @param $dateEnd
+     * @return mixed
+     */
+    public function getAvgOrderValuePerDeviceDateRange($viewId,$dateStart,$dateEnd) {
+        return $this->getDataDateRange($viewId,$dateStart,$dateEnd,'revenuePerTransaction',['date','deviceCategory']);
+    }
 }
