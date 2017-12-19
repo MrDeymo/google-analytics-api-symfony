@@ -1,6 +1,6 @@
 <?php
 
-namespace Rocket\GoogleAnalyticsApi\DependencyInjection;
+namespace RocketServices\GoogleAnalyticsApi\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

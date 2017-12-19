@@ -1,5 +1,5 @@
 {
-  "name": "rocket/ganalytics-api",
+  "name": "rocketservices/ganalytics-api",
   "type": "symfony-bundle",
   "description": "GAnalytics API v4 SF2/3 Bundle",
   "keywords": ["symfony","google","analytics","api","v4"],
@@ -7,7 +7,7 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "MrDeymo"
+      "name": "Florian"
     }
   ],
   "require": {
@@ -21,7 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Rocket\\GoogleAnalyticsApi\\": "."
+      "RocketServices\\GoogleAnalyticsApi\\": "."
     }
   }
 }

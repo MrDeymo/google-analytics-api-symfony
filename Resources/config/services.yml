@@ -1,4 +1,4 @@
 services:
     google_analytics_api.api:
-        class: Dmo\GoogleAnalyticsApi\Service\GoogleAnalyticsService
+        class: RocketServices\GoogleAnalyticsApi\Service\GoogleAnalyticsService
         arguments: ["%google_analytics_api.google_analytics_json_key%"]

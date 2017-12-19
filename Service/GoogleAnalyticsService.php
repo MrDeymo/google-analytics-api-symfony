@@ -1,6 +1,6 @@
 <?php
 
-namespace Rocket\GoogleAnalyticsApi\Service;
+namespace RocketServices\GoogleAnalyticsApi\Service;
 
 use Google_Client;
 use Google_Service_AnalyticsReporting;
@@ -13,7 +13,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  * Class GoogleAnalyticsService
- * @package Rocket\GoogleAnalyticsApi\Service
+ * @package RocketServices\GoogleAnalyticsApi\Service
  */
 class GoogleAnalyticsService {
 

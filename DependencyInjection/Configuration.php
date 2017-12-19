@@ -1,6 +1,6 @@
 <?php
 
-namespace Rocket\GoogleAnalyticsApi\DependencyInjection;
+namespace RocketServices\GoogleAnalyticsApi\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
