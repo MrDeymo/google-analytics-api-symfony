@@ -346,4 +346,101 @@ class GoogleAnalyticsService {
     public function getAvgOrderValuePerDeviceDateRange($viewId,$dateStart,$dateEnd) {
         return $this->getDataDateRange($viewId,$dateStart,$dateEnd,'revenuePerTransaction',['date','deviceCategory']);
     }
+
+    /**
+     * @param $viewId
+     * @param $dateStart
+     * @param $dateEnd
+     * @return mixed
+     */
+    public function getTransactionsDateRange($viewId,$dateStart,$dateEnd) {
+        return $this->getDataDateRange($viewId,$dateStart,$dateEnd,'transactions','date');
+    }
+
+    /**
+     * @param $viewId
+     * @param $dateStart
+     * @param $dateEnd
+     * @return mixed
+     */
+    public function getTransactionsPerDeviceDateRange($viewId,$dateStart,$dateEnd) {
+        return $this->getDataDateRange($viewId,$dateStart,$dateEnd,'transactions',['date','deviceCategory']);
+    }
+
+    /**
+     * @param $viewId
+     * @param $dateStart
+     * @param $dateEnd
+     * @return mixed
+     */
+    public function getTransactionRevenueDateRange($viewId,$dateStart,$dateEnd) {
+        return $this->getDataDateRange($viewId,$dateStart,$dateEnd,'transactionRevenue','date');
+    }
+
+    /**
+     * @param $viewId
+     * @param $dateStart
+     * @param $dateEnd
+     * @return mixed
+     */
+    public function getTransactionRevenuePerDeviceDateRange($viewId,$dateStart,$dateEnd) {
+        return $this->getDataDateRange($viewId,$dateStart,$dateEnd,'transactionRevenue',['date','deviceCategory']);
+    }
+
+    /**
+     * @param $viewId
+     * @param $dateStart
+     * @param $dateEnd
+     * @return mixed
+     */
+    public function getConversionRateDateRange($viewId,$dateStart,$dateEnd) {
+        $sessions = $this->getSessionsDateRange($viewId, $dateStart, $dateEnd);
+        $transactions = $this->getTransactionsDateRange($viewId, $dateStart, $dateEnd);
+        $res = [];
+        $conversionRateDimension = [];
+
+        foreach ($transactions['dimensions'] as $date => $transaction) {
+            $conversionRateDimension[$date] = ($transaction / $sessions['dimensions'][$date]) * 100;
+        }
+
+        $res['dimensionNames'] = ['date', 'conversionRate'];
+        $res['dimensions'] = $conversionRateDimension;
+
+        return $res;
+    }
+
+    /**
+     * @param $viewId
+     * @param $dateStart
+     * @param $dateEnd
+     * @return mixed
+     */
+    public function getConversionRatePerDeviceDateRange($viewId,$dateStart,$dateEnd) {
+        $sessions = $this->getSessionsPerDeviceDateRange($viewId, $dateStart, $dateEnd);
+        $transactions = $this->getTransactionsPerDeviceDateRange($viewId, $dateStart, $dateEnd);
+        $res = [];
+        $min = $max = $total = 0;
+        $conversionRateDimension = [];
+
+        foreach ($transactions['dimensions'] as $date => $transaction) {
+            foreach ($transaction as $device => $deviceTransactions) {
+                $conversionRateDimension[$date][$device] = ($deviceTransactions / $sessions['dimensions'][$date][$device]) * 100;
+                if ($min == 0 && $max == 0 && $total == 0) {
+                    $min = $max = $total = $conversionRateDimension[$date][$device];
+                } else {
+                    if ($conversionRateDimension[$date][$device] < $min) $min = $conversionRateDimension[$date][$device];
+                    if ($conversionRateDimension[$date][$device] > $max) $min = $conversionRateDimension[$date][$device];
+                    $total = ($total + $conversionRateDimension[$date][$device]) / 2;
+                }
+            }
+        }
+
+        $res['dimensions'] = $conversionRateDimension;
+        $res['dimensionNames'] = ['date', 'conversionRate'];
+        $res['dateRangeValues']['min'] = $min;
+        $res['dateRangeValues']['max'] = $max;
+        $res['dateRangeValues']['total'] = $total;
+        
+        return $res;
+    }
 }
